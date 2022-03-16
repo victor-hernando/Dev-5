@@ -10,7 +10,6 @@ public class CombatManager : MonoBehaviour
     public ChooseTarget TargetChooser;
     public Invoker Invoker;
     public StatsUI Stats;
-
     
 
     // Start is called before the first frame update

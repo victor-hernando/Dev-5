@@ -56,7 +56,7 @@ public class Invoker : MonoBehaviour
 
     public static void Undo()
     {
-        if (_currentIndex > 0)
+        if (CanUndo())
         {
             _currentIndex--;
             CommandHistory[_currentIndex].Undo();
