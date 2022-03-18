@@ -29,11 +29,22 @@ public class ActionButtonController : MonoBehaviour
         Hide();
     }
 
-    void Show()
+    GameObject CreateButton(FightCommandTypes commandType)
+    {
+        ActionButton creation = Instantiate(ActionButtonPrefab);
+        creation.Init(commandType, this);
+        return creation.gameObject;
+    }
+
+    public void Show()
     {
         _canvasGroup.alpha = 1;
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.interactable = true;
+        foreach (FightCommandTypes type in (CombatManager.EntityManager.ActiveEntity as Fighter).PossibleCommands)
+        {
+            CurrentButtons.Add(CreateButton(type));
+        }
     }
 
     void Hide()

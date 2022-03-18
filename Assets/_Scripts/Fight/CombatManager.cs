@@ -10,13 +10,14 @@ public class CombatManager : MonoBehaviour
     public ChooseTarget TargetChooser;
     public Invoker Invoker;
     public StatsUI Stats;
+    public CommandFactory _factory;
 
-    FightCommandTypes 
+    FightCommandTypes currentType;
 
     // Start is called before the first frame update
     void Start()
     {
-        //_factory = new CommandFactory();
+        _factory = new CommandFactory();
         StartBattle();
     }
     private void Update()
@@ -27,7 +28,7 @@ public class CombatManager : MonoBehaviour
 
     void StartBattle()
     {
-       
+        ActionButtonController.Show();
     
     }
 
