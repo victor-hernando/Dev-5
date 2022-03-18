@@ -64,6 +64,7 @@ public class ChooseTarget : MonoBehaviour
         {
             if (IsSelectable(entity))
             {
+                //Si cick successful
                 entity.ClickedGood();
                 CombatManager.TargetChosen(entity);
                 StopChoose();

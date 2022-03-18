@@ -24,8 +24,6 @@ public class ActionButtonController : MonoBehaviour
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    
-
     internal void ChooseTarget(Entity activeEntity)
     {
         Hide();
@@ -45,11 +43,6 @@ public class ActionButtonController : MonoBehaviour
         _canvasGroup.interactable = false;
     }
 
-   
-
-  
-
-    
     public void OnButtonPressed(FightCommandTypes fightCommandType)
     {
         

@@ -10,7 +10,8 @@ public class CombatManager : MonoBehaviour
     public ChooseTarget TargetChooser;
     public Invoker Invoker;
     public StatsUI Stats;
-    
+
+    FightCommandTypes 
 
     // Start is called before the first frame update
     void Start()
@@ -32,13 +33,12 @@ public class CombatManager : MonoBehaviour
 
     public void DoAction(FightCommandTypes commandType)
     {
-       
-
+       //cridar factory /crear commando
     }
-    /*
-    private void ChooseTarget(FightCommand _currentCommand)
+    
+    private void ChooseTarget(Command _currentCommand)
     {
-        var targetTypes = _currentCommand.PossibleTargets;
+        TargetTypes targetTypes = _currentCommand.PossibleTargets;
 
         Entity[] possibleTargets;
 
@@ -65,7 +65,6 @@ public class CombatManager : MonoBehaviour
         ActionButtonController.ChooseTarget(EntityManager.ActiveEntity);
         TargetChooser.StartChoose(possibleTargets);
     }
-    */
     private void DoAction(Entity actor, Entity target, FightCommandTypes type)
     {
         
