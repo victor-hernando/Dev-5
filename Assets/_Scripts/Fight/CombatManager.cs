@@ -28,6 +28,7 @@ public class CombatManager : MonoBehaviour
 
     void StartBattle()
     {
+        //1
         ActionButtonController.Show();
     
     }
@@ -35,6 +36,7 @@ public class CombatManager : MonoBehaviour
     public void DoAction(FightCommandTypes commandType)
     {
        //cridar factory /crear commando
+       //2
     }
     
     private void ChooseTarget(Command _currentCommand)

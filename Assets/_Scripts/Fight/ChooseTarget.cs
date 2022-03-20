@@ -11,7 +11,7 @@ public class ChooseTarget : MonoBehaviour
 
     private ISelectable _selected;
 
-    public static Action<Fighter> OnSelected;
+    //public static Action<Fighter> OnSelected;
     // Start is called before the first frame update
     public void StartChoose(ISelectable[] targets)
     {
@@ -80,7 +80,7 @@ public class ChooseTarget : MonoBehaviour
         if (IsSelectable(entity))
         {
             entity.HighlightGood();
-            OnSelected?.Invoke((Fighter)entity);
+            //OnSelected?.Invoke((Fighter)entity);
         }
            
         else
