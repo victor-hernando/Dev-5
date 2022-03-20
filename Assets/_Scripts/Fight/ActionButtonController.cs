@@ -57,5 +57,6 @@ public class ActionButtonController : MonoBehaviour
     public void OnButtonPressed(FightCommandTypes fightCommandType)
     {
         //2
+        CombatManager.DoAction(fightCommandType);
     }
 }

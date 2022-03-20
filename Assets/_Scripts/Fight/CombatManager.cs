@@ -35,8 +35,10 @@ public class CombatManager : MonoBehaviour
 
     public void DoAction(FightCommandTypes commandType)
     {
-       //cridar factory /crear commando
-       //2
+        //cridar factory /crear commando
+        //2
+        currentType = commandType;
+        ChooseTarget((_factory.GetCommand(currentType))as Command);
     }
     
     private void ChooseTarget(Command _currentCommand)
@@ -70,7 +72,8 @@ public class CombatManager : MonoBehaviour
     }
     private void DoAction(Entity actor, Entity target, FightCommandTypes type)
     {
-        
+        var commando = _factory.GetCommand(currentType);
+        //commando.ent
     }
 
     private void Undo()
@@ -91,6 +94,6 @@ public class CombatManager : MonoBehaviour
             Debug.LogError("Selected is not entity");
             return;
         }
-     
+        DoAction(EntityManager.ActiveEntity, entity as Entity, currentType);
     }
 }

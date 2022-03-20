@@ -4,12 +4,15 @@ using UnityEngine;
 
 public abstract class Command : ICommand
 {
-    protected Entity _entity;
+    public Entity _entity;
     protected FightCommandTypes _myType;
     public TargetTypes PossibleTargets;
 
     public FightCommandTypes myType => _myType;
 
+    public Command() 
+    {
+    }
     protected Command(Entity entity)
     {
         _entity = entity;
