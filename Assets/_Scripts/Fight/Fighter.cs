@@ -9,14 +9,17 @@ public class Fighter : Entity
     public float MaxHealth = 100;
 
     private float BaseDefense=5;
+    [SerializeField]
     private float RoundDefense;
     public float Defense => BaseDefense + RoundDefense;
 
     private float BaseAttack=10;
+    [SerializeField]
     private float RoundAttack;
     public float Attack => BaseAttack + RoundAttack;
 
     private float BaseSpeed;
+    [SerializeField]
     private float RoundSpeed;
     public float Speed => BaseSpeed + RoundSpeed;
 
@@ -30,10 +33,16 @@ public class Fighter : Entity
         CurrentHealth = MaxHealth;
     }
 
-    
+    public void Heal(float amout)
+    {
+        float nextHealth = CurrentHealth + amout;
+        CurrentHealth = Math.Min(nextHealth, MaxHealth);
+        OnChange?.Invoke();
+    }
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("attack");
         float realDamage = damage - (BaseDefense + RoundDefense);
         realDamage = Mathf.Max(realDamage, 0);
 

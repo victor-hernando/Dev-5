@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour
     public Invoker Invoker;
     public StatsUI Stats;
     public CommandFactory _factory;
+    int turn;
 
     FightCommandTypes currentType;
 
@@ -19,18 +20,18 @@ public class CombatManager : MonoBehaviour
     {
         _factory = new CommandFactory();
         StartBattle();
+        turn = 0;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-            Undo();
+        //if (Input.GetKeyDown(KeyCode.Z))
+           // Undo();
     }
 
     void StartBattle()
     {
         //1
         ActionButtonController.Show();
-    
     }
 
     public void DoAction(FightCommandTypes commandType)
@@ -73,18 +74,25 @@ public class CombatManager : MonoBehaviour
     private void DoAction(Entity actor, Entity target, FightCommandTypes type)
     {
         var commando = _factory.GetCommand(currentType);
-        //commando.ent
+        (commando as Command)._entity = target;
+        Invoker.AddCommand(commando);
     }
 
-    private void Undo()
+    private void OnUndo()
     {
-        
+        if (turn > 0)
+        {
+            EntityManager.SetPreviousEntity();
+            Invoker.Undo();
+            ActionButtonController.DeleteButtons();
+            NextTurn();
+        }
     }
-
 
     public void NextTurn()
     {
-        
+        turn++; 
+        StartBattle();
     }
 
     internal void TargetChosen(ISelectable entity)
@@ -95,5 +103,7 @@ public class CombatManager : MonoBehaviour
             return;
         }
         DoAction(EntityManager.ActiveEntity, entity as Entity, currentType);
+        EntityManager.SetNextEntity();
+        NextTurn();
     }
 }

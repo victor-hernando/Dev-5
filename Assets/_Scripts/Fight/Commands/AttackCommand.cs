@@ -5,7 +5,9 @@ using UnityEngine;
 public class AttackCommand : Command
 {
     public AttackCommand() : base()
-    { 
+    {
+        _myType = FightCommandTypes.Attack;
+        PossibleTargets = TargetTypes.Enemy;
     }
     public AttackCommand(Entity entity) : base(entity)
     {
@@ -13,18 +15,27 @@ public class AttackCommand : Command
     }
     public override void Excecute()
     {
-        
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).TakeDamage(10);
+        }
     }
 
     public override void Undo()
     {
-        
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).Heal(5);
+        }
     }
 }
 public class BoostAttackCommand : Command
 {
     public BoostAttackCommand() : base()
     {
+        _myType = FightCommandTypes.BoostAttack;
+
+        PossibleTargets = TargetTypes.Self;
     }
     public BoostAttackCommand(Entity entity) : base(entity)
     {
@@ -32,18 +43,26 @@ public class BoostAttackCommand : Command
     }
     public override void Excecute()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddAttack(1);
+        }
     }
 
     public override void Undo()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddAttack(-1);
+        }
     }
 }
 public class BoostDefenseCommand : Command
 {
     public BoostDefenseCommand() : base()
     {
+        _myType = FightCommandTypes.BoostDefense;
+        PossibleTargets = TargetTypes.Self;
     }
     public BoostDefenseCommand(Entity entity) : base(entity)
     {
@@ -51,18 +70,26 @@ public class BoostDefenseCommand : Command
     }
     public override void Excecute()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddDefensePermanent(1);
+        }
     }
 
     public override void Undo()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddDefensePermanent(-1);
+        }
     }
 }
 public class ShieldCommand : Command
 {
     public ShieldCommand() : base()
     {
+        _myType = FightCommandTypes.Shield;
+        PossibleTargets = TargetTypes.FriendNotSelf;
     }
     public ShieldCommand(Entity entity) : base(entity)
     {
@@ -70,18 +97,26 @@ public class ShieldCommand : Command
     }
     public override void Excecute()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddDefense(5);
+        }
     }
 
     public override void Undo()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddDefense(-5);
+        }
     }
 }
 public class HealCommand : Command
 {
     public HealCommand() : base()
     {
+        _myType = FightCommandTypes.Heal;
+        PossibleTargets = TargetTypes.Friend;
     }
     public HealCommand(Entity entity) : base(entity)
     {
@@ -89,11 +124,17 @@ public class HealCommand : Command
     }
     public override void Excecute()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).Heal(3);
+        }
     }
 
     public override void Undo()
     {
-
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).AddAttack(-3);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ActionButtonController : MonoBehaviour
@@ -16,12 +17,21 @@ public class ActionButtonController : MonoBehaviour
 
     private CanvasGroup _canvasGroup;
 
+    [SerializeField]
+    TextMeshProUGUI name;
+
     //public CubeColor Cube;
 
     // Start is called before the first frame update
     void Awake()
     {
+        CurrentButtons = new List<GameObject>();
         _canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    private void Update()
+    {
+        name.text = CombatManager.EntityManager.ActiveEntity.name;
     }
 
     internal void ChooseTarget(Entity activeEntity)
@@ -52,6 +62,16 @@ public class ActionButtonController : MonoBehaviour
         _canvasGroup.alpha = 0;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
+        DeleteButtons();
+    }
+
+    public void DeleteButtons()
+    {
+        foreach (GameObject button in CurrentButtons)
+        {
+            Destroy(button);
+        }
+        CurrentButtons.Clear();
     }
 
     public void OnButtonPressed(FightCommandTypes fightCommandType)
