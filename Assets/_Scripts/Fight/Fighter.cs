@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Fighter : Entity
 {
+    [SerializeField]
+    private EntityManager entityManager;
+    [SerializeField]
+    private int entityIdx;
+
     public float CurrentHealth;
     public float MaxHealth = 100;
 
