@@ -22,6 +22,11 @@ public class EntityManager : MonoBehaviour
     private void Start()
     {
         aliveEntities = allEntities;
+        for(int idx = 0; idx < allEntities.Count; idx++)
+        {
+            allEntities[idx].entityManager = this;
+
+        }
     }
 
     public void SetNextEntity()

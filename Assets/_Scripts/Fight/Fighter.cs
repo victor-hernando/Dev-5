@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Fighter : Entity
 {
-    public EntityManager entityManager;
-    [SerializeField]
+    private EntityManager entityManager;
     private int entityIdx;
 
     public float CurrentHealth;
@@ -38,6 +37,12 @@ public class Fighter : Entity
     void Awake()
     {
         CurrentHealth = MaxHealth;
+    }
+
+    public void SetEntityManager(EntityManager manager, int idx)
+    {
+        entityManager = manager;
+        entityIdx = idx;
     }
 
     public void Heal(float amout)
