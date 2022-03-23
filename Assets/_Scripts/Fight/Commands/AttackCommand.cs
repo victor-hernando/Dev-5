@@ -45,7 +45,7 @@ public class BoostAttackCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).AddAttack(1);
+            (_entity as Fighter).AddAttackPermanent(1);
         }
     }
 
@@ -53,7 +53,7 @@ public class BoostAttackCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).AddAttack(-1);
+            (_entity as Fighter).AddAttackPermanent(-1);
         }
     }
 }
@@ -134,7 +134,7 @@ public class HealCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).AddAttack(-3);
+            (_entity as Fighter).Heal(-3);
         }
     }
 }

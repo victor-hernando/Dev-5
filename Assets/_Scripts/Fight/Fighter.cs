@@ -8,16 +8,19 @@ public class Fighter : Entity
     public float CurrentHealth;
     public float MaxHealth = 100;
 
+    [SerializeField]
     private float BaseDefense=5;
     [SerializeField]
     private float RoundDefense;
     public float Defense => BaseDefense + RoundDefense;
 
+    [SerializeField]
     private float BaseAttack=10;
     [SerializeField]
     private float RoundAttack;
     public float Attack => BaseAttack + RoundAttack;
 
+    [SerializeField]
     private float BaseSpeed;
     [SerializeField]
     private float RoundSpeed;

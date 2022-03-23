@@ -82,16 +82,20 @@ public class CombatManager : MonoBehaviour
     {
         if (turn > 0)
         {
+            //Undo limitat fins al principi de la ronda
             EntityManager.SetPreviousEntity();
             Invoker.Undo();
             ActionButtonController.DeleteButtons();
+            turn -= 2;
             NextTurn();
+            print(turn);
         }
     }
 
     public void NextTurn()
     {
-        turn++; 
+        turn++;
+        turn %= EntityManager.EntitiesNum;
         StartBattle();
     }
 
