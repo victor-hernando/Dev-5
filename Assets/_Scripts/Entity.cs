@@ -10,6 +10,11 @@ public class Entity : MonoBehaviour, ISelectable
         
     }
 
+    public virtual void SetEntityManager() 
+    {
+        
+    }
+
     public void ClickedGood()
     {
         GetComponent<SpriteRenderer>().color = Color.white;

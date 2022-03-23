@@ -24,8 +24,7 @@ public class EntityManager : MonoBehaviour
         aliveEntities = allEntities;
         for(int idx = 0; idx < allEntities.Count; idx++)
         {
-            allEntities[idx].entityManager = this;
-
+            allEntities[idx].SetEntityManager();
         }
     }
 
