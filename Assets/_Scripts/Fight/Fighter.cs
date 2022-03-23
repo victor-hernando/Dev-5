@@ -10,6 +10,7 @@ public class Fighter : Entity
 
     public float CurrentHealth;
     public float MaxHealth = 100;
+    public float CurrentLevel;
 
     [SerializeField]
     private float BaseDefense=5;
@@ -65,9 +66,10 @@ public class Fighter : Entity
             Die();
     }
 
-    public void Upgrade(float level)
+    public void Upgrade()
     {
-
+        CurrentLevel += 1;
+        OnChange?.Invoke();
     }
 
     private void Die()
