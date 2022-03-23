@@ -9,6 +9,7 @@ public enum FightCommandTypes
     BoostDefense,
     Heal,
     Shield,
+    Upgrade, 
 }
 
 public enum TargetTypes
@@ -17,5 +18,4 @@ public enum TargetTypes
     Friend,
     Self,
     FriendNotSelf,
-
 }

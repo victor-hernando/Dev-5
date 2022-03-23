@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Fighter : Entity
 {
-    [SerializeField]
-    private EntityManager entityManager;
+    public EntityManager entityManager;
     [SerializeField]
     private int entityIdx;
 
@@ -59,6 +58,11 @@ public class Fighter : Entity
         OnChange?.Invoke();
         if (CurrentHealth < 0)
             Die();
+    }
+
+    public void Upgrade(float level)
+    {
+
     }
 
     private void Die()

@@ -138,3 +138,32 @@ public class HealCommand : Command
         }
     }
 }
+
+public class UpgradeCommand : Command
+{
+    public UpgradeCommand() : base()
+    {
+        _myType = FightCommandTypes.Upgrade;
+        PossibleTargets = TargetTypes.Self;
+    }
+
+    public UpgradeCommand(Entity entity) : base(entity)
+    {
+        _myType = FightCommandTypes.Upgrade;
+    }
+    public override void Excecute()
+    {
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).Heal(3);
+        }
+    }
+
+    public override void Undo()
+    {
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).Heal(-3);
+        }
+    }
+}
