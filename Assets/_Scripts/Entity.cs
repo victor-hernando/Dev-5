@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour, ISelectable
 {
+    public EntityManager entityManager;
+    public int entityIdx;
+
+    protected Color normalColor;
+
     public Team Team;
     public void ClickedBad()
     {
         
     }
 
-    public virtual void SetEntityManager() 
+    public virtual void SetEntityManager(EntityManager manager, int idx)
     {
-        
     }
 
     public void ClickedGood()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = normalColor;
     }
 
     public void HighlightBad()
@@ -32,7 +36,19 @@ public class Entity : MonoBehaviour, ISelectable
 
     public void UnSelect()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = normalColor;
+    }
+
+    public virtual void Die()
+    {
+        normalColor = Color.gray;
+        GetComponent<SpriteRenderer>().color = normalColor;
+    }
+
+    public void Revive()
+    {
+        normalColor = Color.white;
+        GetComponent<SpriteRenderer>().color = normalColor;
     }
 }
 

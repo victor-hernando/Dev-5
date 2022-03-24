@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Command : ICommand
 {
     public Entity _entity;
+    public Entity _actor;
     protected FightCommandTypes _myType;
     public TargetTypes PossibleTargets;
 
@@ -13,11 +15,11 @@ public abstract class Command : ICommand
     public Command() 
     {
     }
-    protected Command(Entity entity)
+    internal void Init(Entity target, Entity actor)
     {
-        _entity = entity;
+        _entity = target;
+        _actor = actor;
     }
-
     public abstract void Excecute();
     public abstract void Undo();
 }

@@ -33,7 +33,7 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler
         // _color = color;
         // _image.color = _color;
         _type = type;
-        transform.parent = colorButtonController.transform;
+        transform.SetParent(colorButtonController.transform);
         _colorButtonController = colorButtonController;
         _text.text = type.ToString(); ;
     }

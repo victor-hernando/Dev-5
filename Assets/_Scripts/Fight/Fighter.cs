@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Fighter : Entity
 {
-    private EntityManager entityManager;
-    private int entityIdx;
-
     public float CurrentHealth;
     public float MaxHealth = 100;
     public float CurrentLevel;
@@ -38,9 +36,10 @@ public class Fighter : Entity
     void Awake()
     {
         CurrentHealth = MaxHealth;
+        normalColor = Color.white;
     }
 
-    public void SetEntityManager(EntityManager manager, int idx)
+    public override void SetEntityManager(EntityManager manager, int idx)
     {
         entityManager = manager;
         entityIdx = idx;
@@ -55,7 +54,6 @@ public class Fighter : Entity
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("attack");
         float realDamage = damage - (BaseDefense + RoundDefense);
         realDamage = Mathf.Max(realDamage, 0);
 
@@ -66,15 +64,38 @@ public class Fighter : Entity
             Die();
     }
 
+    public void RestoreDamage(float damage)
+    {
+        float realDamage = damage - (BaseDefense + RoundDefense);
+        realDamage = Mathf.Max(realDamage, 0);
+
+        if (entityManager.Deads.Contains(this))
+            Revive(false);
+        CurrentHealth += realDamage;
+
+        OnChange?.Invoke();
+    }
+
     public void Upgrade()
     {
         CurrentLevel += 1;
         OnChange?.Invoke();
     }
 
-    private void Die()
+    public override void Die()
     {
-        Destroy(gameObject);
+        entityManager.RemoveEntity(this);
+        base.Die();
+    }
+
+    public void Revive(bool heal)
+    {
+        base.Revive();
+        entityManager.AddEntity(this, entityIdx); 
+        if (heal)
+        {
+            CurrentHealth = 10;
+        }
     }
 
     public void AddDefense(float amount)

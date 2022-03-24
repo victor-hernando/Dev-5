@@ -18,13 +18,19 @@ public class EntityManager : MonoBehaviour
     public Entity[] Friends => aliveEntities.Where(x => x.Team == ActiveEntity.Team).ToArray();
     public Entity[] FriendsNotSelf => aliveEntities.Where(x => x.Team == ActiveEntity.Team && x != ActiveEntity).ToArray();
     public Entity[] Deads => allEntities.Where(x => !aliveEntities.Contains(x)).ToArray();
-
+    private void Awake()
+    {
+        _currentIndex = 0;
+        foreach(Entity entity in allEntities)
+        {
+            aliveEntities.Add(entity);
+        }
+    }
     private void Start()
     {
-        aliveEntities = allEntities;
         for(int idx = 0; idx < allEntities.Count; idx++)
         {
-            allEntities[idx].SetEntityManager();
+            allEntities[idx].SetEntityManager(this, idx);
         }
     }
 
@@ -32,7 +38,7 @@ public class EntityManager : MonoBehaviour
     {
         _currentIndex++;
         CheckRound();
-        _currentIndex = _currentIndex % aliveEntities.Count;
+        _currentIndex %= aliveEntities.Count;
     }
 
     private void CheckRound()
@@ -57,10 +63,14 @@ public class EntityManager : MonoBehaviour
     public void RemoveEntity(Entity entity)
     {
         aliveEntities.Remove(entity);
+        if (entity.entityIdx <= _currentIndex) _currentIndex --;
+        _currentIndex %= aliveEntities.Count;
     }
 
     public void AddEntity(Entity entity, int idx)
     {
         aliveEntities.Insert(idx, entity);
+        if (entity.entityIdx <= _currentIndex) _currentIndex++;
+        _currentIndex %= aliveEntities.Count;
     }
 }

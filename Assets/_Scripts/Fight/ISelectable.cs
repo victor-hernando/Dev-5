@@ -12,4 +12,6 @@ public interface ISelectable
     void ClickedGood();
     void ClickedBad();
 
+    void Die();
+    void Revive();
 }

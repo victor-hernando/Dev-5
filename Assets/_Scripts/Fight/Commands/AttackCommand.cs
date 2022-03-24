@@ -9,15 +9,11 @@ public class AttackCommand : Command
         _myType = FightCommandTypes.Attack;
         PossibleTargets = TargetTypes.Enemy;
     }
-    public AttackCommand(Entity entity) : base(entity)
-    {
-        _myType = FightCommandTypes.Attack;
-    }
     public override void Excecute()
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).TakeDamage(10);
+            (_entity as Fighter).TakeDamage(((Fighter)_actor).Attack);
         }
     }
 
@@ -25,7 +21,30 @@ public class AttackCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).Heal(5);
+            (_entity as Fighter).RestoreDamage(((Fighter)_actor).Attack);
+        }
+    }
+}
+public class ReviveCommand : Command
+{
+    public ReviveCommand() : base()
+    {
+        _myType = FightCommandTypes.Revive;
+        PossibleTargets = TargetTypes.Dead;
+    }
+    public override void Excecute()
+    {
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).Revive(true);
+        }
+    }
+
+    public override void Undo()
+    {
+        if (_entity is Fighter)
+        {
+            (_entity as Fighter).Revive(true);
         }
     }
 }
@@ -36,10 +55,6 @@ public class BoostAttackCommand : Command
         _myType = FightCommandTypes.BoostAttack;
 
         PossibleTargets = TargetTypes.Self;
-    }
-    public BoostAttackCommand(Entity entity) : base(entity)
-    {
-        _myType = FightCommandTypes.BoostAttack;
     }
     public override void Excecute()
     {
@@ -64,10 +79,6 @@ public class BoostDefenseCommand : Command
         _myType = FightCommandTypes.BoostDefense;
         PossibleTargets = TargetTypes.Self;
     }
-    public BoostDefenseCommand(Entity entity) : base(entity)
-    {
-        _myType = FightCommandTypes.BoostDefense;
-    }
     public override void Excecute()
     {
         if (_entity is Fighter)
@@ -90,10 +101,6 @@ public class ShieldCommand : Command
     {
         _myType = FightCommandTypes.Shield;
         PossibleTargets = TargetTypes.FriendNotSelf;
-    }
-    public ShieldCommand(Entity entity) : base(entity)
-    {
-        _myType = FightCommandTypes.Shield;
     }
     public override void Excecute()
     {
@@ -118,10 +125,6 @@ public class HealCommand : Command
         _myType = FightCommandTypes.Heal;
         PossibleTargets = TargetTypes.Friend;
     }
-    public HealCommand(Entity entity) : base(entity)
-    {
-        _myType = FightCommandTypes.Heal;
-    }
     public override void Excecute()
     {
         if (_entity is Fighter)
@@ -145,11 +148,6 @@ public class UpgradeCommand : Command
     {
         _myType = FightCommandTypes.Upgrade;
         PossibleTargets = TargetTypes.Self;
-    }
-
-    public UpgradeCommand(Entity entity) : base(entity)
-    {
-        _myType = FightCommandTypes.Upgrade;
     }
     public override void Excecute()
     {

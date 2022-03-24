@@ -63,7 +63,9 @@ public class CombatManager : MonoBehaviour
                 possibleTargets = new Entity[1];
                 possibleTargets[0] = EntityManager.ActiveEntity;
                 break;
-
+            case TargetTypes.Dead:
+                possibleTargets = EntityManager.Deads;
+                break;
             default:
                 possibleTargets = EntityManager.Enemies;
                 break;
@@ -74,7 +76,7 @@ public class CombatManager : MonoBehaviour
     private void DoAction(Entity actor, Entity target, FightCommandTypes type)
     {
         var commando = _factory.GetCommand(currentType);
-        (commando as Command)._entity = target;
+        (commando as Command).Init(target, actor);
         Invoker.AddCommand(commando);
     }
 

@@ -18,7 +18,7 @@ public class ActionButtonController : MonoBehaviour
     private CanvasGroup _canvasGroup;
 
     [SerializeField]
-    TextMeshProUGUI name;
+    TextMeshProUGUI nameText;
 
     //public CubeColor Cube;
 
@@ -31,7 +31,7 @@ public class ActionButtonController : MonoBehaviour
 
     private void Update()
     {
-        name.text = CombatManager.EntityManager.ActiveEntity.name;
+        nameText.text = CombatManager.EntityManager.ActiveEntity.name;
     }
 
     internal void ChooseTarget(Entity activeEntity)
