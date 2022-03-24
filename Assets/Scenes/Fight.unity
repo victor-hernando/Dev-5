@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8695804}
   - component: {fileID: 8695807}
   m_Layer: 0
-  m_Name: Spider
+  m_Name: Bulbasur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,12 +154,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31d88f04a08584cbe1cd1aba18f6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityManager: {fileID: 0}
+  entityIdx: 0
   Team: 0
   CurrentHealth: 0
   MaxHealth: 100
+  CurrentLevel: 0
   BaseDefense: 5
   RoundDefense: 0
-  BaseAttack: 10
+  BaseAttack: 60
   RoundAttack: 0
   BaseSpeed: 0
   RoundSpeed: 0
@@ -389,7 +392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c40062cfddb1f4f88140caeeacbdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entities:
+  aliveEntities: []
+  allEntities:
   - {fileID: 8695804}
   - {fileID: 2057409986}
   - {fileID: 1076451287}
@@ -1085,7 +1089,7 @@ GameObject:
   - component: {fileID: 1076451287}
   - component: {fileID: 1076451286}
   m_Layer: 0
-  m_Name: Bat
+  m_Name: Machop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,12 +1133,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31d88f04a08584cbe1cd1aba18f6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityManager: {fileID: 0}
+  entityIdx: 0
   Team: 0
   CurrentHealth: 0
   MaxHealth: 100
+  CurrentLevel: 0
   BaseDefense: 5
   RoundDefense: 0
-  BaseAttack: 10
+  BaseAttack: 60
   RoundAttack: 0
   BaseSpeed: 0
   RoundSpeed: 0
@@ -1412,7 +1419,7 @@ GameObject:
   - component: {fileID: 1612530094}
   - component: {fileID: 1612530093}
   m_Layer: 0
-  m_Name: Demon
+  m_Name: Charmander
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1456,16 +1463,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31d88f04a08584cbe1cd1aba18f6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityManager: {fileID: 0}
+  entityIdx: 0
   Team: 1
   CurrentHealth: 0
   MaxHealth: 100
+  CurrentLevel: 0
   BaseDefense: 5
   RoundDefense: 0
   BaseAttack: 10
   RoundAttack: 0
   BaseSpeed: 0
   RoundSpeed: 0
-  PossibleCommands: 01000000
+  PossibleCommands: 0100000006000000
 --- !u!212 &1612530095
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1851,7 +1861,7 @@ GameObject:
   - component: {fileID: 2057409986}
   - component: {fileID: 2057409989}
   m_Layer: 0
-  m_Name: Skull
+  m_Name: Squirtle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1869,16 +1879,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31d88f04a08584cbe1cd1aba18f6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityManager: {fileID: 0}
+  entityIdx: 0
   Team: 1
   CurrentHealth: 0
   MaxHealth: 100
+  CurrentLevel: 0
   BaseDefense: 5
   RoundDefense: 0
   BaseAttack: 10
   RoundAttack: 0
   BaseSpeed: 0
   RoundSpeed: 0
-  PossibleCommands: 040000000100000000000000
+  PossibleCommands: 04000000010000000000000006000000
 --- !u!212 &2057409987
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2134,7 +2147,7 @@ MonoBehaviour:
     type: 3}
   PossibleCommands: 0000000001000000
   CombatManager: {fileID: 2062942663}
-  name: {fileID: 485838984}
+  nameText: {fileID: 485838984}
 --- !u!114 &2147182627
 MonoBehaviour:
   m_ObjectHideFlags: 0
