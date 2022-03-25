@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour, ISelectable
 {
-    public EntityManager entityManager;
-    public int entityIdx;
+    EntityManager entityManager;
+    int entityIdx;
 
     protected Color normalColor;
 
