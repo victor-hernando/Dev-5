@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class StatsUI : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class StatsUI : MonoBehaviour
     void UpdateStats(Fighter fighter)
     {
         Name.text = fighter.nom;
-        HealthPoints.text = "HP: "+fighter.CurrentHealth.ToString();
+        HealthPoints.text = "HP: " + Math.Max(fighter.CurrentHealth, 0).ToString();
         AttackPoints.text = "ATT: " + fighter.Attack.ToString();
         DefensePoints.text = "DEF: " + fighter.Defense.ToString();
     }
