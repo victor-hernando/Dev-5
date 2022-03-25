@@ -154,7 +154,8 @@ public class UpgradeCommand : Command
         if (_entity is Fighter)
         {
             (_entity as Fighter).Upgrade();
-            (_entity as Fighter).AddDefensePermanent(1);
+            (_entity as Fighter).AddDefensePermanent(2);
+            (_entity as Fighter).AddAttackPermanent(2);
         }
     }
 
@@ -162,7 +163,9 @@ public class UpgradeCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).Upgrade();
+            (_entity as Fighter).Downgrade();
+            (_entity as Fighter).AddDefensePermanent(-2);
+            (_entity as Fighter).AddAttackPermanent(-2);
         }
     }
 }

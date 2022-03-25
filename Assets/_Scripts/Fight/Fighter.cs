@@ -8,7 +8,10 @@ public class Fighter : Entity
 {
     public float CurrentHealth;
     public float MaxHealth = 100;
-    public float CurrentLevel;
+    public int CurrentLevel;
+
+    [SerializeField]
+    private Sprite[] evolutions;
 
     [SerializeField]
     private float BaseDefense=5;
@@ -32,7 +35,6 @@ public class Fighter : Entity
 
     public static Action OnChange;
 
-    // Start is called before the first frame update
     void Awake()
     {
         CurrentHealth = MaxHealth;
@@ -78,8 +80,15 @@ public class Fighter : Entity
 
     public void Upgrade()
     {
-        //base.Upgrade();
-        CurrentLevel += 1;
+        CurrentLevel++;
+        if (CurrentLevel < 2) GetComponent<SpriteRenderer>().sprite = evolutions[CurrentLevel];
+        OnChange?.Invoke();
+    }
+
+    public void Downgrade()
+    {
+        CurrentLevel--;
+        if (CurrentLevel < 2) GetComponent<SpriteRenderer>().sprite = evolutions[CurrentLevel];
         OnChange?.Invoke();
     }
 
