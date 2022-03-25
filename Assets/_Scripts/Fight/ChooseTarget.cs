@@ -15,6 +15,7 @@ public class ChooseTarget : MonoBehaviour
     // Start is called before the first frame update
     public void StartChoose(ISelectable[] targets)
     {
+        CombatManager.Stats.Show();
         PossibleTargets = new List<ISelectable>();
         foreach (var target in targets)
         {

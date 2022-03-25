@@ -11,9 +11,12 @@ public class StatsUI : MonoBehaviour
     public TextMeshProUGUI DefensePoints;
 
     private Fighter _fighter;
-    // Start is called before the first frame update
+
+    private CanvasGroup _canvasGroup;
+    
     void OnEnable()
     {
+        _canvasGroup = GetComponent<CanvasGroup>();
         Fighter.OnChange += OnStatsChange;
         ChooseTarget.OnSelected += SetEntity;
     }
@@ -29,9 +32,7 @@ public class StatsUI : MonoBehaviour
     {
         _fighter = fighter;
         UpdateStats(fighter);
-    }
-
-     
+    } 
 
     private void OnStatsChange()
     {
@@ -40,9 +41,16 @@ public class StatsUI : MonoBehaviour
 
     void UpdateStats(Fighter fighter)
     {
-        Name.text = fighter.transform.name;
+        Name.text = fighter.nom;
         HealthPoints.text = "HP: "+fighter.CurrentHealth.ToString();
         AttackPoints.text = "ATT: " + fighter.Attack.ToString();
         DefensePoints.text = "DEF: " + fighter.Defense.ToString();
+    }
+
+    public void Show()
+    {
+        _canvasGroup.alpha = 1;
+        _canvasGroup.blocksRaycasts = true;
+        _canvasGroup.interactable = true;
     }
 }

@@ -10,6 +10,9 @@ public class Entity : MonoBehaviour, ISelectable
     protected Color normalColor;
 
     public Team Team;
+
+    public string nom;
+
     public void ClickedBad()
     {
         

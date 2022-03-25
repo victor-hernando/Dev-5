@@ -31,7 +31,7 @@ public class ActionButtonController : MonoBehaviour
 
     private void Update()
     {
-        nameText.text = CombatManager.EntityManager.ActiveEntity.name;
+        nameText.text = CombatManager.EntityManager.ActiveEntity.nom;
     }
 
     internal void ChooseTarget(Entity activeEntity)

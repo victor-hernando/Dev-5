@@ -12,6 +12,8 @@ public class Fighter : Entity
 
     [SerializeField]
     private Sprite[] evolutions;
+    [SerializeField]
+    private string[] noms;
 
     [SerializeField]
     private float BaseDefense=5;
@@ -37,6 +39,7 @@ public class Fighter : Entity
 
     void Awake()
     {
+        nom = noms[0];
         CurrentHealth = MaxHealth;
         normalColor = Color.white;
     }
@@ -81,14 +84,22 @@ public class Fighter : Entity
     public void Upgrade()
     {
         CurrentLevel++;
-        if (CurrentLevel < 2) GetComponent<SpriteRenderer>().sprite = evolutions[CurrentLevel];
+        if (CurrentLevel < 3)
+        {
+            GetComponent<SpriteRenderer>().sprite = evolutions[CurrentLevel];
+            nom = noms[CurrentLevel];
+        }
         OnChange?.Invoke();
     }
 
     public void Downgrade()
     {
         CurrentLevel--;
-        if (CurrentLevel < 2) GetComponent<SpriteRenderer>().sprite = evolutions[CurrentLevel];
+        if (CurrentLevel < 3)
+        {
+            GetComponent<SpriteRenderer>().sprite = evolutions[CurrentLevel];
+            nom = noms[CurrentLevel];
+        }
         OnChange?.Invoke();
     }
 
