@@ -153,7 +153,8 @@ public class UpgradeCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).Heal(3);
+            (_entity as Fighter).Upgrade();
+            (_entity as Fighter).AddDefensePermanent(1);
         }
     }
 
@@ -161,7 +162,7 @@ public class UpgradeCommand : Command
     {
         if (_entity is Fighter)
         {
-            (_entity as Fighter).Heal(-3);
+            (_entity as Fighter).Upgrade();
         }
     }
 }

@@ -50,6 +50,11 @@ public class Entity : MonoBehaviour, ISelectable
         normalColor = Color.white;
         GetComponent<SpriteRenderer>().color = normalColor;
     }
+
+    /*public void Upgrade()
+    {
+        GetComponent<SpriteRenderer>().sprite = GetComponentInChildren<SpriteRenderer>().sprite;
+    }*/
 }
 
 public enum Team

@@ -78,6 +78,7 @@ public class Fighter : Entity
 
     public void Upgrade()
     {
+        //base.Upgrade();
         CurrentLevel += 1;
         OnChange?.Invoke();
     }
